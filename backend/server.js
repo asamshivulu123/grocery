@@ -52,6 +52,21 @@ io.on('connection', (socket) => {
   });
 });
 
+// Health Check Route
+app.get('/', (req, res) => {
+  res.json({
+    message: '✅ Grocery Store API is running',
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      auth: '/api/auth',
+      products: '/api/products',
+      orders: '/api/orders',
+      upload: '/api/upload'
+    }
+  });
+});
+
 // Routes
 app.use('/api/auth', require('./src/routes/authRoutes'));
 app.use('/api/products', require('./src/routes/productRoutes'));
