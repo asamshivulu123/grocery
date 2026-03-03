@@ -9,9 +9,18 @@ const { errorHandler } = require('./src/middleware/errorHandler');
 
 const app = express();
 const server = http.createServer(app);
+
+// Configure CORS origins based on environment
+const allowedOrigins = process.env.NODE_ENV === 'production' 
+  ? [
+      'https://grocery-frontend.onrender.com',
+      'https://grocery-admin.onrender.com'
+    ]
+  : '*';
+
 const io = new Server(server, {
   cors: {
-    origin: "*", // allow from all for dev, restrict in prod
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE"]
   }
 });
@@ -20,7 +29,10 @@ const io = new Server(server, {
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
