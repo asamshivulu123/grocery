@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  color: #1a1a1a;
+  background-color: #f8fafc;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  display: block;
+}
+
+#root {
+  width: 100%;
+}
+
+.sidebar-gradient {
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+}
+
+.table-row-hover:hover {
+  background-color: #f1f5f9;
+}
+
+.dashboard-card {
+  @apply bg-white rounded-2xl border border-slate-100 shadow-sm transition-all;
+}
+
+.dashboard-card:hover {
+  @apply shadow-lg shadow-slate-200/50;
+}
